@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Cadastro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Fundo escuro */
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #00ff7f; /* Verde claro */
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #2a2a2a;
+            color: white;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-submit {
+            background-color: #00ff7f; /* Verde */
+            color: black;
+        }
+
+        .btn-clear {
+            background-color: #2a2a2a;
+            color: white;
+        }
+
+        .btn-clear:hover, .btn-submit:hover {
+            opacity: 0.9;
+        }
+
+        .show-password {
+            margin-top: -10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .show-password label {
+            margin-left: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro</h1>
+
+        <!-- Formulário de Cadastro -->
+        <form id="cadastro-form">
+            <input type="text" name="nome-completo" placeholder="Nome Completo" required>
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="text" name="usuario" placeholder="Criar Usuário" required>
+            
+            <input type="password" id="senha" name="senha" placeholder="Criar Senha" required>
+            <!-- Opção para mostrar a senha -->
+            <div class="show-password">
+                <input type="checkbox" id="mostrarSenha" onclick="toggleSenha()">
+                <label for="mostrarSenha">Mostrar senha</label>
+            </div>
+
+            <!-- Opção de seleção: Médico ou Secretária -->
+            <select id="tipo-cadastro" name="tipo" required>
+                <option value="" disabled selected>Selecione: Médico ou Secretária</option>
+                <option value="medico">Médico</option>
+                <option value="secretaria">Secretária</option>
+            </select>
+
+            <!-- Campos adicionais para Secretária -->
+            <div id="secretaria-fields" class="hidden">
+                <input type="text" name="clinica" placeholder="Nome da Clínica">
+                <input type="text" name="medico-responsavel" placeholder="Nome do Médico Responsável">
+            </div>
+
+            <!-- Campos adicionais para Médico -->
+            <div id="medico-fields" class="hidden">
+                <input type="text" name="especialidade" placeholder="Especialidade">
+                <input type="text" name="crm" placeholder="CRM">
+                
+                <!-- Seleção de tipo de Registro -->
+                <select id="registro-tipo" name="registro-tipo">
+                    <option value="" disabled selected>Selecione o tipo de Registro</option>
+                    <option value="rqe">RQE</option>
+                    <option value="teot">TEOT</option>
+                    <option value="cro">CRO</option>
+                    <option value="crp">CRP</option>
+                </select>
+
+                <input type="text" name="registro-numero" placeholder="Insira a Numeração">
+            </div>
+
+            <!-- Botões de Ação -->
+            <button type="submit" class="btn-submit">Concluir Cadastro</button>
+            <button type="reset" class="btn-clear">Limpar</button>
+        </form>
+    </div>
+
+    <script>
+        // Mostrar ou esconder campos com base na seleção de Médico ou Secretária
+        const tipoCadastro = document.getElementById('tipo-cadastro');
+        const secretariaFields = document.getElementById('secretaria-fields');
+        const medicoFields = document.getElementById('medico-fields');
+
+        tipoCadastro.addEventListener('change', function() {
+            if (this.value === 'secretaria') {
+                secretariaFields.classList.remove('hidden');
+                medicoFields.classList.add('hidden');
+            } else if (this.value === 'medico') {
+                medicoFields.classList.remove('hidden');
+                secretariaFields.classList.add('hidden');
+            } else {
+                secretariaFields.classList.add('hidden');
+                medicoFields.classList.add('hidden');
+            }
+        });
+
+        // Função para mostrar/ocultar a senha
+        function toggleSenha() {
+            var senha = document.getElementById("senha");
+            if (senha.type === "password") {
+                senha.type = "text";
+            } else {
+                senha.type = "password";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda MédicosOnlineBr</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212; /* Fundo escuro */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #00ff7f; /* Verde claro */
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #2a2a2a;
+            color: white;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-login {
+            background-color: #00ff7f; /* Verde */
+            color: black;
+        }
+
+        .btn-clear {
+            background-color: #2a2a2a;
+            color: white;
+        }
+
+        .btn-clear:hover, .btn-login:hover {
+            opacity: 0.9;
+        }
+
+        .btn-cadastro {
+            background-color: #00ff7f; /* Verde */
+            color: black;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .btn-cadastro:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Agenda MédicosOnlineBr</h1>
+        <form>
+            <input type="text" name="usuario" placeholder="Usuário">
+            <input type="password" name="senha" placeholder="Senha">
+            <button type="submit" class="btn-login">Entrar</button>
+            <button type="reset" class="btn-clear">Limpar</button>
+        </form>
+
+        <!-- Botão de Cadastro -->
+        <button onclick="window.location.href='cadastro.html'" class="btn-cadastro">Cadastro</button>
+    </div>
+</body>
+</html>
